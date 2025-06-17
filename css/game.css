@@ -1,0 +1,257 @@
+.game-container {
+    position: relative;
+    width: 100%;
+    min-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    background-image: url('fundo_estrelado.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.planet.sun {
+    position: absolute;
+    width: 15vw;
+    height: 15vw;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url(../img/sol.png);
+    background-size: 19.5vw;
+    background-position: center;
+    box-shadow: 0 0 50px rgba(255, 255, 0, 0.8);
+    z-index: 0;
+    border-radius: 50%;
+}
+
+.planets-grid {
+    position: absolute;
+    padding: 2vw;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    margin: auto;
+    max-width: 90vw;
+    max-height: 90vh;
+    place-items: center;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    gap: 2vw;
+    grid-template-areas:
+        ". mercury venus ."
+        ". neptune earth ."
+        ". sun-placeholder . ."
+        "uranus . . mars"
+        ". saturn jupiter .";
+}
+
+.planet.mercury {
+    grid-area: mercury;
+    align-self: end;
+    justify-self: end;
+}
+
+.planet.venus {
+    grid-area: venus;
+    align-self: end;
+    justify-self: center;
+}
+
+.planet.earth {
+    grid-area: earth;
+    align-self: center;
+    justify-self: end;
+}
+
+.planet.mars {
+    grid-area: mars;
+    align-self: center;
+    justify-self: start;
+}
+
+.planet.jupiter {
+    grid-area: jupiter;
+    align-self: start;
+    justify-self: end;
+}
+
+.planet.saturn {
+    grid-area: saturn;
+    align-self: start;
+    justify-self: start;
+}
+
+.planet.uranus {
+    grid-area: uranus;
+    align-self: center;
+    justify-self: end;
+}
+
+.planet.neptune {
+    grid-area: neptune;
+    align-self: center;
+    justify-self: start;
+}
+
+.planet {
+    position: relative;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+    user-select: none;
+    border: 2px solid transparent;
+    box-sizing: border-box;
+    z-index: 1;
+}
+
+.planet.mercury {
+    width: 4vw;
+    height: 4vw;
+    background-image: url(../img/mercurio.png);
+    background-size: 4.8vw;
+    background-position: center;
+}
+
+.planet.venus {
+    width: 7vw;
+    height: 7vw;
+    background-image: url(../img/venus.png);
+    background-size: 9.3vw;
+    background-position: center;
+}
+
+.planet.earth {
+    width: 6vw;
+    height: 6vw;
+    background-image: url(../img/terra.png);
+    background-size: 7.3vw;
+    background-position: center;
+}
+
+.planet.mars {
+    width: 5vw;
+    height: 5vw;
+    background-image: url(../img/marte.png);
+    background-size: 6.3vw;
+    background-position: center;
+}
+
+.planet.jupiter {
+    width: 10vw;
+    height: 10vw;
+    background-image: url(../img/jupiter.png);
+    background-size: 12vw;
+    background-position: center;
+}
+
+.planet.saturn {
+    width: 10vw;
+    height: 10vw;
+    background-image: url(../img/saturno.png);
+    background-size: 7.9vw;
+    background-position: center;
+}
+
+.planet.uranus {
+    width: 7vw;
+    height: 7vw;
+    background-image: url(../img/urano.png);
+    background-size: 9.3vw;
+    background-position: center;
+}
+
+.planet.neptune {
+    width: 6vw;
+    height: 6vw;
+    background-image: url(../img/netuno.png);
+    background-size: 8.3vw;
+    background-position: center;
+}
+
+
+/* Efeito de hover */
+.planet:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.8), 0 0 40px rgba(0, 255, 255, 0.6);
+    border: 2px solid cyan;
+    z-index: 5;
+}
+
+.planet-name {
+    position: absolute;
+    bottom: -1.5em;
+    font-size: 0.8em;
+    white-space: nowrap;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.level-indicator {
+    position: absolute;
+    top: -0.5em;
+    right: -0.5em;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 2px solid transparent;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.7em;
+    font-weight: bold;
+    color: white;
+    text-shadow: none;
+    pointer-events: none;
+}
+
+.planet.locked {
+    filter: grayscale(100%) brightness(50%);
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.planet.unlocked {
+    filter: none;
+    opacity: 1;
+    cursor: pointer;
+}
+
+.rocket,
+.nav-button {
+    display: none;
+}
+
+.quiz-modal {
+    display: none;
+}
+
+.message-box {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+    z-index: 2000;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.message-box.show {
+    opacity: 1;
+}
